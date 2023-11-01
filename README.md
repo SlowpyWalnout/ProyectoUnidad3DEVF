@@ -1,4 +1,6 @@
-# Proyecto Base De Datos De Alumnos - EquipoUnidad3DEVF (Jose Quintana, Manuel Sanchez, Ethan Cervera)
+# Proyecto Base De Datos De Alumnos 
+
+Equipo-Unidad3-DEV.F (Jose Quintana, Manuel Sanchez, Ethan Cervera)
 
 Requisitos:
 
