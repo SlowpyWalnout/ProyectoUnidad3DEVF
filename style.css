@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color:#A7B4D2;
+    font-family: 'Asap', sans-serif;
+    font-size: 20px;
+}
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 750px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    align-items: center;
+}
+
+
+.title {
+    font-size: 28px;
+    color: #324F97;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    background-color: #fff;
+}
+
+
+.message, .signin {
+    color: #153688;
+    font-size: 18px;
+    background-color: #fff;
+  }
+
+
+  .flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+    background-color: #FFF;
+  }
+
+  
+  .form label {
+    position: relative;
+    background-color: #fff;
+  }
+  
+
+  .form label .input {
+    width: 100%;
+    height: 35px;
+    margin-bottom: 20px;
+    padding: 10px 10px 10px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+    background-color: #fff;
+  }
+
+
+  #Edad {
+    width: 85px;
+  }
+
+
+  .form label .input + span {
+    position: absolute;
+    left: 10px;
+    top: 36px;
+    color: grey;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+    background-color: transparent;
+  }
