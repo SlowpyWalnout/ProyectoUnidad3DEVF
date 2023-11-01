@@ -1,0 +1,42 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Database Alumnos</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <main>
+        <form class="form">
+            <p class="title">Registro </p>
+            <p class="message">Ingrese los datos del alumno. </p>
+            <div class="flex">
+                <label>
+                    <input required="" placeholder="" type="text" class="input" id="PrimerNombre">
+                    <span>Primer nombre</span>
+                </label>
+        
+                <label>
+                    <input placeholder="" type="text" class="input" id="SegundoNombre">
+                    <span>Segundo nombre</span>
+                </label>
+                <label>
+                    <input required="" placeholder="" type="text" class="input" id="ApellidoPaterno">
+                    <span>Apellido Paterno</span>
+                </label>
+                <label>
+                    <input required="" placeholder="" type="text" class="input" id="ApellidoMaterno">
+                    <span>Apellido Materno</span>
+                </label>
+            </div>  
+                    
+            <label>
+                <input id="Edad" required="" placeholder="" type="number" class="input" minlength="1" maxlength="2">
+                <span>Edad</span>
+            </label> 
+        
+            <button>Registrar</button>
+        </form>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
