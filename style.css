@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color:#A7B4D2;
+    background-color:#183069;
     font-family: 'Asap', sans-serif;
     font-size: 20px;
 }
@@ -13,14 +13,15 @@ main {
     flex-direction: column;
     align-items: center;
     margin-top: 10%;
+    margin-block-end: 10%;
 }
 
 
 .form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-width: 750px;
+    gap: 50px;
+    max-width: 500px;
     background-color: #fff;
     padding: 20px;
     border-radius: 20px;
@@ -30,63 +31,75 @@ main {
 
 
 .title {
-    font-size: 28px;
-    color: #324F97;
-    font-weight: 600;
+    font-size: 100px;
+    color: #000000;
+    font-weight: 800;
     letter-spacing: -1px;
     position: relative;
     display: flex;
     align-items: center;
-    padding-left: 30px;
     background-color: #fff;
 }
 
 
 .message, .signin {
     color: #153688;
-    font-size: 18px;
+    font-size: 23px;
     background-color: #fff;
-  }
+}
 
 
-  .flex {
-    display: flex;
-    width: 100%;
-    gap: 6px;
-    background-color: #FFF;
-  }
 
-  
-  .form label {
+.form label {
     position: relative;
     background-color: #fff;
-  }
-  
+}
 
-  .form label .input {
+
+.form label .input {
     width: 100%;
-    height: 35px;
+    height: 50px;
     margin-bottom: 20px;
     padding: 10px 10px 10px 10px;
     outline: 0;
     border: 1px solid rgba(105, 105, 105, 0.397);
     border-radius: 10px;
     background-color: #fff;
-  }
+}
 
 
-  #Edad {
-    width: 85px;
-  }
-
-
-  .form label .input + span {
-    position: absolute;
-    left: 10px;
-    top: 36px;
+.form label .input + span {
     color: grey;
     font-size: 0.9em;
     cursor: text;
     transition: 0.3s ease;
     background-color: transparent;
-  }
+}
+
+button{
+    background-color: #1245b3;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+h2{
+    background-color: #fff;
+}
+
+.buttonSuma{
+    background-color: #1245b3;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
