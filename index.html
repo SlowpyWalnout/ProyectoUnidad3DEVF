@@ -6,37 +6,36 @@
 </head>
 <body>
     <main>
+        <h1>Registro</h1>
         <form class="form" id="formularioCompleto">
-            <p class="title">Registro </p>
-            <p class="message">Ingrese los datos del alumno. </p>
-
+            <h2>Ingrese los datos del alumno.</h2>
             <label>Primer nombre</label>
-            <input type="text" placeholder="Ingresa el nombre" id="PrimerNombre" required>
-            <!-- <input required="" placeholder="" type="text" class="input" id="PrimerNombre"> -->
+            <input type="text" placeholder="Ingresa el nombre..." id="PrimerNombre" required>
+            <br>
             <label>Apellido paterno</label>
-            <input type="text" placeholder="Ingresa el apellido" id="ApellidoPaterno" required>
+            <input type="text" placeholder="Ingresa el apellido..." id="ApellidoPaterno" required>
+            <br>
             <label>Apellido materno</label>
-            <input type="text" placeholder="Ingresa el apellido" id="ApellidoMaterno" required>
+            <input type="text" placeholder="Ingresa el apellido..." id="ApellidoMaterno" required>
+            <br>
             <label>Edad</label>
-            <input type="text" placeholder="Ingresa la edad" id="Edad" required>
-
+            <input type="text" placeholder="Ingresa la edad..." id="Edad" required>
+            <br>
             <h2>Agregar Grupo</h2>
-            <form action="">
-                <select name="" id="">
-                    <option value="">grupo1</option>
-                    <option value="">grupo2</option>
-                    <option value="">grupo3</option>
-                </select>
-            </form>
-
+            <select name="" id="">
+                <option value="">grupo1</option>
+                <option value="">grupo2</option>
+                <option value="">grupo3</option>
+            </select>
+            <br>
             <h2>Agregar materia <button class="buttonSuma" onclick="agregarMateria()">+</button></h2>
             <div id="EspacioMaterias">
 
             </div>
+            <br>
             <input type="submit" value="Registrar">
         </form>
     </main>
-
-
+    <script src="script.js"></script>
 </body>
 </html>

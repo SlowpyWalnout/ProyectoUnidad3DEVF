@@ -9,13 +9,24 @@ class Alumno{
         this. materiasInscritas = []
     }
 }
+console.log('el script esta conectado al html')
 const form = document.getElementById("formularioCompleto");
-
 form.addEventListener('submit', (event) =>{
     event.preventDefault();
+    console.log('formulario enviado');
+    //obtenemos los valores del formulario
     let nombre = document.getElementById('PrimerNombre').value;
-    console.log(nombre)
+    let apellidoPaterno = document.getElementById('ApellidoPaterno').value;
+    let apellidoMaterno = document.getElementById('ApellidoMaterno').value;
+    let edad = document.getElementById('Edad').value;
+    //creamos un alumno con los valores del formulario
+    const nuevoAlumno = new Alumno(nombre, apellidoPaterno, apellidoMaterno, edad, true);
+    //aqui debemos de agregar el alumno a la lista dinamica.
+    console.log('Alumno registrado: ', nuevoAlumno);
+    //debemos comprobar si existen materias y si es asi, debemos de registrar todos los inputs.
 })
+
+
 //indice para distinguir el id de cada materia
 numeroDeMateria = 1;
 function agregarMateria(){   
@@ -29,9 +40,9 @@ function agregarMateria(){
     //inyectamos el html para registrar cada materia dentro del div unico para cada materia
     inputMateria.innerHTML = `
         <label for="materia">Materia:</label>
-        <input type="text" id="materia" placeholder="Escribe la materia aquí...">
+        <input type="text" id="NombreMateria${numeroDeMateria}" placeholder="Escribe la materia aquí...">
         <label for="calificacion">Calificacion:</label>
-        <input type="number" name="calificacion" id="calificacion" placeholder="Escribe tu calificacion...">
+        <input type="number" name="calificacion" id="calificacion${numeroDeMateria}" placeholder="Escribe tu calificacion...">
         <button onclick="eliminarMateria(this)">-</button>
     `;
     //agregamos la materia al div de las materias
