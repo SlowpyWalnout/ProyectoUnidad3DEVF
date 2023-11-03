@@ -7,35 +7,18 @@
 <body>
     <main>
         <form class="form" id="formularioCompleto">
-
             <p class="title">Registro </p>
-
             <p class="message">Ingrese los datos del alumno. </p>
 
-            <label>
-                <input required="" placeholder="" type="text" class="input" id="PrimerNombre">
-                <span>Primer nombre</span>
-            </label>
-
-            <label>
-                <input placeholder="" type="text" class="input" id="SegundoNombre">
-                <span>Segundo nombre</span>
-            </label>
-
-            <label>
-                <input required="" placeholder="" type="text" class="input" id="ApellidoPaterno">
-                <span>Apellido Paterno</span>
-            </label>
-
-            <label>
-                <input required="" placeholder="" type="text" class="input" id="ApellidoMaterno">
-                <span>Apellido Materno</span>
-            </label>
-
-            <label>
-                <input id="Edad" required="" placeholder="" type="number" class="input">
-                <span>Edad</span>
-            </label>
+            <label>Primer nombre</label>
+            <input type="text" placeholder="Ingresa el nombre" id="PrimerNombre" required>
+            <!-- <input required="" placeholder="" type="text" class="input" id="PrimerNombre"> -->
+            <label>Apellido paterno</label>
+            <input type="text" placeholder="Ingresa el apellido" id="ApellidoPaterno" required>
+            <label>Apellido materno</label>
+            <input type="text" placeholder="Ingresa el apellido" id="ApellidoMaterno" required>
+            <label>Edad</label>
+            <input type="text" placeholder="Ingresa la edad" id="Edad" required>
 
             <h2>Agregar Grupo</h2>
             <form action="">
@@ -50,11 +33,10 @@
             <div id="EspacioMaterias">
 
             </div>
-            <button>Registrar</button>
+            <input type="submit" value="Registrar">
         </form>
     </main>
 
-    <script src="script.js"></script>
 
 </body>
 </html>

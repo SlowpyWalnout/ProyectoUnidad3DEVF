@@ -9,7 +9,13 @@ class Alumno{
         this. materiasInscritas = []
     }
 }
-const formulario = document.getElementById('formularioCompleto');
+const form = document.getElementById("formularioCompleto");
+
+form.addEventListener('submit', (event) =>{
+    event.preventDefault();
+    let nombre = document.getElementById('PrimerNombre').value;
+    console.log(nombre)
+})
 //indice para distinguir el id de cada materia
 numeroDeMateria = 1;
 function agregarMateria(){   
@@ -45,5 +51,3 @@ function eliminarMateria(button){
     //se elimina el elemento por el id de la materia
     materiaPorEliminar.parentNode.removeChild(materiaPorEliminar);
 }
-eliminarMateria();
-agregarMateria();
