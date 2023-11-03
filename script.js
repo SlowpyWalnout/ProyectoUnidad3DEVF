@@ -8,45 +8,42 @@ class Alumno{
         this.calificaciones = []
         this. materiasInscritas = []
     }
-    agregarMateriaCalificacion(){
-        while(true){
-            let materia = prompt('Ingresa la materia: \nsi ya no quieres agregar mas, no escribas nada...');
-            if(materia === ''){
-                return this.materiasInscritas;
-            }
-            this.materiasInscritas.push(materia)
-            let calificacion = prompt('Ingresa la calificacion de la materia:');
-            this.calificaciones.push(parseInt(calificacion));
-        }
-    }
 }
-function alta(Alumno){
-    if(Alumno.nombre != null && Alumno.apellidoPaterno != null && Alumno.apellidoMaterno != null){
-        Alumno.alta = true;
-    }else{
-        Alumno.alta = false;
-    }
-    
-}
-let alumno1 = new Alumno('Jose', 'Quintana', 'Diaz', 20, true);
-alumno1.agregarMateriaCalificacion();
-console.log(alumno1)
-alta(alumno1);
-console.log(alumno1);
-
-function inputMateria(){
+const formulario = document.getElementById('formularioCompleto');
+//indice para distinguir el id de cada materia
+numeroDeMateria = 1;
+function agregarMateria(){   
     //metodo para agregar inputs al html
-    //se selecciona el elemento para agregar las materias 
+    //se selecciona el elemento donde vamos a meter todas las materias 
     const EspacioMaterias = document.getElementById("EspacioMaterias");
-    //creamos el input para poder agregar materia
+    //creamos un div unico para cada materia dentro del elemento
     const inputMateria = document.createElement("div")
+    //le asignamos nombre para identificar a cada div 
+    inputMateria.id = `materia${numeroDeMateria}` 
+    //inyectamos el html para registrar cada materia dentro del div unico para cada materia
     inputMateria.innerHTML = `
         <label for="materia">Materia:</label>
         <input type="text" id="materia" placeholder="Escribe la materia aquí...">
         <label for="calificacion">Calificacion:</label>
         <input type="number" name="calificacion" id="calificacion" placeholder="Escribe tu calificacion...">
-        <button>-</button>
+        <button onclick="eliminarMateria(this)">-</button>
     `;
+    //agregamos la materia al div de las materias
     EspacioMaterias.appendChild(inputMateria);
+    //se aumenta el indice que se usara en el nombre de la id de la materia
+    numeroDeMateria++
 };
-inputMateria();
+function eliminarMateria(button){
+    //muy posiblemente se puede simplificar mas este codigo...
+
+    //se obtiene el elemento completo, el div del boton
+    let materia = button.parentNode;
+    //se obtiene el id del elemento completo
+    let idMateria = materia.id; 
+    //se obtiene el elemento por el id de donde se quiere eliminar
+    let materiaPorEliminar = document.getElementById(idMateria);
+    //se elimina el elemento por el id de la materia
+    materiaPorEliminar.parentNode.removeChild(materiaPorEliminar);
+}
+eliminarMateria();
+agregarMateria();
