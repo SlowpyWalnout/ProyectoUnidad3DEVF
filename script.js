@@ -33,3 +33,20 @@ alumno1.agregarMateriaCalificacion();
 console.log(alumno1)
 alta(alumno1);
 console.log(alumno1);
+
+function inputMateria(){
+    //metodo para agregar inputs al html
+    //se selecciona el elemento para agregar las materias 
+    const EspacioMaterias = document.getElementById("EspacioMaterias");
+    //creamos el input para poder agregar materia
+    const inputMateria = document.createElement("div")
+    inputMateria.innerHTML = `
+        <label for="materia">Materia:</label>
+        <input type="text" id="materia" placeholder="Escribe la materia aquí...">
+        <label for="calificacion">Calificacion:</label>
+        <input type="number" name="calificacion" id="calificacion" placeholder="Escribe tu calificacion...">
+        <button>-</button>
+    `;
+    EspacioMaterias.appendChild(inputMateria);
+};
+inputMateria();
