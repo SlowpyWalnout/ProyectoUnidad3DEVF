@@ -2,50 +2,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Database Alumnos</title>
-    <link rel="stylesheet" href="./css/styles.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 <body>
     <main>
-        <form class="form">
+        <h1>Registro</h1>
+        <form class="form" id="formularioCompleto">
+            <h2>Ingrese los datos del alumno.</h2>
+            <label>Primer nombre</label>
+            <input type="text" placeholder="Ingresa el nombre..." id="PrimerNombre" required>
+            <br>
+            <label>Apellido paterno</label>
+            <input type="text" placeholder="Ingresa el apellido..." id="ApellidoPaterno" required>
+            <br>
+            <label>Apellido materno</label>
+            <input type="text" placeholder="Ingresa el apellido..." id="ApellidoMaterno" required>
+            <br>
+            <label>Edad</label>
+            <input type="text" placeholder="Ingresa la edad..." id="Edad" required>
+            <br>
+            <h2>Agregar Grupo</h2>
+            <select name="" id="">
+                <option value="">grupo1</option>
+                <option value="">grupo2</option>
+                <option value="">grupo3</option>
+            </select>
+            <br>
+            <h2>Agregar materia <button class="buttonSuma" onclick="agregarMateria()">+</button></h2>
+            <div id="EspacioMaterias">
 
-            <p class="title">Registro </p>
-
-            <p class="message">Ingrese los datos del alumno. </p>
-
-            <label>
-                <input required="" placeholder="" type="text" class="input" id="PrimerNombre">
-                <span>Primer nombre</span>
-            </label>
-
-            <label>
-                <input placeholder="" type="text" class="input" id="SegundoNombre">
-                <span>Segundo nombre</span>
-            </label>
-
-            <label>
-                <input required="" placeholder="" type="text" class="input" id="ApellidoPaterno">
-                <span>Apellido Paterno</span>
-            </label>
-
-            <label>
-                <input required="" placeholder="" type="text" class="input" id="ApellidoMaterno">
-                <span>Apellido Materno</span>
-            </label>
-
-            <label>
-                <input id="Edad" required="" placeholder="" type="number" class="input">
-                <span>Edad</span>
-            </label>
-
-            <h2>Agregar Grupo: <button class="buttonSuma">+</button></h2>
-            <h2>Agregar materia <button class="buttonSuma">+</button></h2>
-
-            <button>Registrar</button>
-
+            </div>
+            <br>
+            <!-- <input type="submit" value="Registrar"> -->
         </form>
+        <input type="submit" value="Registrar">
     </main>
-
     <script src="script.js"></script>
-
 </body>
 </html>
