@@ -1,11 +1,14 @@
+Alumnos = []
 class Alumno{
-    constructor(nombre, apellidoPaterno, apellidoMaterno, edad, alta){
+    constructor(nombre, apellidoPaterno, apellidoMaterno, edad, grupo){
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.edad = edad;
-        this.alta = alta
-        this.materias = []
+        //Preguntar al sensei
+        // this.alta = alta;
+        this.grupo = grupo;
+        this.materias = [];
     }
 }
 class Materia{
@@ -27,12 +30,17 @@ form.addEventListener('submit', (event) =>{
     let apellidoPaterno = document.getElementById('ApellidoPaterno').value;
     let apellidoMaterno = document.getElementById('ApellidoMaterno').value;
     let edad = document.getElementById('Edad').value;
+    let grupoSeleccionado = document.getElementById('grupoSeleccionado').value;
     //creamos un alumno con los valores del formulario
-    let nuevoAlumno = new Alumno(nombre, apellidoPaterno, apellidoMaterno, edad, true);
-    //aqui debemos de agregar el alumno a la lista dinamica.
-    insertarMaterias(nuevoAlumno)
+    let nuevoAlumno = new Alumno(nombre, apellidoPaterno, apellidoMaterno, edad, grupoSeleccionado);
+    //registramos materias del alumno.
+    insertarMaterias(nuevoAlumno);
     console.log('Alumno registrado: ', nuevoAlumno);
     //debemos comprobar si existen materias y si es asi, debemos de registrar todos los inputs.
+    Alumnos.push(nuevoAlumno);
+
+    formularioCompleto.reset();
+    console.log(Alumnos)
 })
 
 
@@ -42,7 +50,7 @@ function insertarMaterias(Alumno){
     //Se obtiene la cantidad de divs que hay dentro del div main
     const numeroElementosHijos = elementoPadre.children.length;
     //prueba de que si se consiguio la cantidad de divs dentro del div main
-    console.log(`Numero de elementos hijos: ${numeroElementosHijos}`);
+    console.log(`Numero de Materias por Alumno: ${numeroElementosHijos}`);
     //iteracion para registrar cada materia dentro del alumno ingresado
     for(let i = 1; i <= numeroElementosHijos; i++){
         insertarMateria(i, Alumno)
@@ -61,7 +69,6 @@ function insertarMateria(i, Alumno){
     Alumno.materias.push(NuevaMateria);
     return Alumno;
 }
-function asignarGrupo(){}
 //indice para distinguir el id de cada materia
 let numeroDeMateria = 1;
 //funcion para crear espacio para agregar otra materia con el boton '+'

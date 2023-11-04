@@ -22,20 +22,21 @@
             <input type="text" placeholder="Ingresa la edad..." id="Edad" required>
             <br>
             <h2>Agregar Grupo</h2>
-            <select name="" id="">
-                <option value="">grupo1</option>
-                <option value="">grupo2</option>
-                <option value="">grupo3</option>
+            <select name="" id="grupoSeleccionado">
+                <option value="grupo 1">grupo1</option>
+                <option value="grupo 2">grupo2</option>
+                <option value="grupo 3">grupo3</option>
             </select>
             <br>
-            <h2>Agregar materia <button class="buttonSuma" onclick="agregarMateria()">+</button></h2>
+            <h2>Agregar materia
+                <button type="button" class="buttonSuma" onclick="agregarMateria()">+</button>
+            </h2>
             <div id="EspacioMaterias">
 
             </div>
             <br>
-            <!-- <input type="submit" value="Registrar"> -->
+            <input type="submit" value="Registrar">
         </form>
-        <input type="submit" value="Registrar">
     </main>
     <script src="script.js"></script>
 </body>
