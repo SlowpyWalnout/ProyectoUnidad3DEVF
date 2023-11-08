@@ -109,4 +109,9 @@ function eliminarMateria(button){
     let materiaPorEliminar = document.getElementById(idMateria);
     //se elimina el elemento por el id de la materia
     materiaPorEliminar.parentNode.removeChild(materiaPorEliminar);
+
+
+
+    //podemos hacer que se restablezca el orden de los numeros de id existentes depues de cada eliminacion.
+    //o podemos hacer que se lea sin considerar el id de los divs por medio de uso de querys.
 }
