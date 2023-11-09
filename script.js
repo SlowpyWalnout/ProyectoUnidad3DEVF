@@ -1,5 +1,8 @@
 //nuestra poderosisima estructura dee datos
 Alumnos = []
+//variable para poder distinguir materias al momento de eliminar la materia desde el boton de eliminar
+let numeroDeMateria = 1;
+
 //clase alumno
 class Alumno{
     constructor(nombre, apellidoPaterno, apellidoMaterno, edad, grupo){
@@ -7,8 +10,6 @@ class Alumno{
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.edad = edad;
-        //Preguntar al sensei
-        // this.alta = alta;
         this.grupo = grupo;
         this.materias = [];
     }
@@ -20,15 +21,12 @@ class Materia{
         this.calificacion = calificacion;
     }
 }
-
-//prueba de que el script se conecta al html
-console.log('el script esta conectado al html')
-//se obtiene el formulario por su id
-const form = document.getElementById("formularioCompleto");
+console.log('el script esta conectado al html')//prueba de que el script se conecta al html
+const form = document.getElementById("formularioCompleto"); //se obtiene el formulario por su id
 //lo que tiene que hacer el programa al presionar el boton registrar
 form.addEventListener('submit', (event) =>{
     event.preventDefault();
-    //obtenemos los valores del formulario
+    //obtenemos los datos del alumno del formulario
     let nombre = document.getElementById('PrimerNombre').value;
     let apellidoPaterno = document.getElementById('ApellidoPaterno').value;
     let apellidoMaterno = document.getElementById('ApellidoMaterno').value;
@@ -38,80 +36,48 @@ form.addEventListener('submit', (event) =>{
     let nuevoAlumno = new Alumno(nombre, apellidoPaterno, apellidoMaterno, edad, grupoSeleccionado);
     //registramos materias del alumno.
     insertarMaterias(nuevoAlumno);
-    console.log('Alumno registrado: ', nuevoAlumno);
-    //debemos comprobar si existen materias y si es asi, debemos de registrar todos los inputs.
-    Alumnos.push(nuevoAlumno);
-    // Al Registrar el alumno se reinicia el formulario con .reseta
-    formularioCompleto.reset();
-    //comprobamos si si se guardan bien los alumnos en la poderosisima estructura de datos
-    console.log(Alumnos)
+    console.log('Alumno registrado: ', nuevoAlumno); //este console.log es para depurar y ver como se registro el alumno
+    Alumnos.push(nuevoAlumno); //agregamos a la estructura de datos el alumno registrado
+    console.log(Alumnos) //comprobamos si se registra bien en la estructura de datos
+    formularioCompleto.reset(); //se borran los datos del formulario para facilitar el registro de otro alumno.
 })
-
-
+//para insertar cada materia en el alumno en registro.
 function insertarMaterias(Alumno){
-    //se obtiene el div main
-    const elementoPadre = document.getElementById('EspacioMaterias');
-    //Se obtiene la cantidad de divs que hay dentro del div main
-    const numeroElementosHijos = elementoPadre.children.length;
-    //prueba de que si se consiguio la cantidad de divs dentro del div main
-    console.log(`Numero de Materias por Alumno: ${numeroElementosHijos}`);
-    //iteracion para registrar cada materia dentro del alumno ingresado
-    for(let i = 1; i <= numeroElementosHijos; i++){
-        insertarMateria(i, Alumno)
-    }
-    return Alumno;
+    const elementoPadre = document.getElementById('EspacioMaterias'); //se obtiene el div main
+    const inputsMateria = elementoPadre.querySelectorAll('.input-materia'); //Se obtiene la cantidad de divs que hay dentro del div main
+    inputsMateria.forEach((input, index) =>{ //se recorre cada materia registrada en el alumno.
+        const nombreMateria = input.querySelector('.nombre-materia').value; //se obtine y se guarda la materia registrada
+        const calificacionMateria = input.querySelector('.calificacion-materia').value; //se obtiene y se guarda la calificacion en cada materia
+        console.log(`la materia ${nombreMateria} con calificacion ${calificacionMateria} ha sido registrada correctamente!`)// console.log para comprobar que se obtuvo bien la materia
+        let nuevaMateria = new Materia(nombreMateria, calificacionMateria); // se ingresan la materia y calificacion en una materia 
+        Alumno.materias.push(nuevaMateria); //se agrega la materia a las materias del alumno
+    });
+    return Alumno 
 }
-function insertarMateria(i, Alumno){
-    //se ingresa en una variable el valor del input NombreMateria
-    let NombreMateria = document.getElementById(`NombreMateria${i}`).value;
-    //se ingresa en una variable el valor del input de la calificacion
-    let CalificacionMateria = document.getElementById(`calificacion${i}`).value;
-    //prueba de que se obtuvo la materia y la calificacion de cada div registrado
-    console.log('La materia ',NombreMateria, ' con calificacion ', CalificacionMateria, 'ha sido registrada correctamente')
-    //se crea el objeto Materia junto con el nombre de la materia y la calificacion.
-    let NuevaMateria = new Materia(NombreMateria, CalificacionMateria);
-    //se agrega la materia en las materias del alumno
-    Alumno.materias.push(NuevaMateria);
-    return Alumno;
-}
-//indice para distinguir el id de cada materia
-let numeroDeMateria = 1;
-//funcion para crear espacio para agregar otra materia con el boton '+'
-function agregarMateria(){   
-    //metodo para agregar inputs al html
-    //se selecciona el elemento donde vamos a meter todas las materias 
-    const EspacioMaterias = document.getElementById("EspacioMaterias");
-    //creamos un div unico para cada materia dentro del elemento
-    const inputMateria = document.createElement("div")
-    //le asignamos nombre para identificar a cada div 
-    inputMateria.id = `materia${numeroDeMateria}` 
-    //inyectamos el html para registrar cada materia dentro del div unico para cada materia
-    inputMateria.innerHTML = `
+//funcion para agragar materia cada que se presiona el boton para agregar materias
+function agregarMateria(){
+    const EspacioMaterias = document.getElementById("EspacioMaterias"); // se obtiene el div main
+    const inputMateria = document.createElement("div"); // se crea el div para la materia que se quiera agregar
+    inputMateria.classList.add("input-materia"); //se asigna una clase al div
+    inputMateria.id = `input-materia${numeroDeMateria}`; //se asigna un id para identificar la materia al momento de querer borrarla
+    //se inyecta el html para registrar materia y calificacion junto con boton para eliminar la materia si se agregaron espacios de mas.
+    inputMateria.innerHTML =  `
         <label for="materia">Materia:</label>
-        <input type="text" id="NombreMateria${numeroDeMateria}" placeholder="Escribe la materia aquí...">
+        <input type="text" class="nombre-materia" placeholder="Escribe la materia aquí...">
         <label for="calificacion">Calificacion:</label>
-        <input type="number" name="calificacion" id="calificacion${numeroDeMateria}" placeholder="Escribe tu calificacion...">
+        <input type="number" name="calificacion" class="calificacion-materia" placeholder="Escribe tu calificacion...">
         <button onclick="eliminarMateria(this)">-</button>
-    `;
-    //agregamos la materia al div de las materias
-    EspacioMaterias.appendChild(inputMateria);
-    //se aumenta el indice que se usara en el nombre de la id de la materia
-    numeroDeMateria++
-};
-//funcion para eliminar el espacio creado para agregar materia materia con el boton '-'
+    `
+    EspacioMaterias.appendChild(inputMateria); //se agrega la materia al div main de las materias
+    numeroDeMateria++; //se cambia el id de la materia para identificarlas correctamente.
+}
+
+//funcion para eliminar el espacio creadoo agregar materia con el boton '-'
 function eliminarMateria(button){
-    //muy posiblemente se puede simplificar mas este codigo...
-    //se obtiene el elemento completo, el div del boton
-    let materia = button.parentNode;
-    //se obtiene el id del elemento completo
-    let idMateria = materia.id; 
-    //se obtiene el elemento por el id de donde se quiere eliminar
-    let materiaPorEliminar = document.getElementById(idMateria);
-    //se elimina el elemento por el id de la materia
-    materiaPorEliminar.parentNode.removeChild(materiaPorEliminar);
-
-
-
-    //podemos hacer que se restablezca el orden de los numeros de id existentes depues de cada eliminacion.
-    //o podemos hacer que se lea sin considerar el id de los divs por medio de uso de querys.
+    let materia = button.parentNode; //se obtiene el div en el que esta el boton 
+    if(materia && materia.parentNode){ //validacion donde existe materia y el espacio materias
+        let idMateria = materia.id; //se obtiene el id del div donde esta la materia
+        let materiaPorEliminar= document.getElementById(idMateria); //se busca la materia a eliminar con su div
+        materiaPorEliminar.parentNode.removeChild(materiaPorEliminar); //se elimina la materia del div main
+    }
 }
