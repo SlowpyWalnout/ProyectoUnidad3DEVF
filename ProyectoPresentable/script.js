@@ -1,9 +1,13 @@
+//nuestra poderosisima estructura dee datos
+let Alumnos = []
+
 //----------------------------------------------------------------------------------
+
 function CargarDatos(){
 
-    if (localStorage.getItem("DatabaseAlumnos")){
+    if (localStorage.getItem("DatabaseAlumnos2")){
     
-       Alumnos = JSON.parse( localStorage.getItem("DatabaseAlumnos") );
+       Alumnos = JSON.parse( localStorage.getItem("DatabaseAlumnos2") ); //recupera el objeto original.
        }else{
         console.log('no hay datos guardados')
        }
@@ -14,7 +18,7 @@ function CargarDatos(){
     //----------------------------------------------------------------------------------
     function GuardarDatos(datosAlumnos){
     
-       localStorage.setItem("DatabaseAlumnos", JSON.stringify(datosAlumnos));
+       localStorage.setItem("DatabaseAlumnos2", JSON.stringify(datosAlumnos));//trasforma el dato en formato json
     
     }
     //----------------------------------------------------------------------------------
@@ -30,6 +34,27 @@ class Alumno{
         this.grupo = grupo;
         this.materias = [];
         this.expediente = expediente;
+        this.promedio = 0;
+    }
+    promedioAlumno(){
+        if(this.materias.length > 0){
+            let listaCalificaciones = [];
+            for(let i = 0; i< this.materias.length; i++){
+                let calificacionEnUso = parseInt(this.materias[i].calificacion);
+                listaCalificaciones.push(calificacionEnUso);
+            }
+            let suma = 0;
+            if(listaCalificaciones.length > 0){
+                for(let i=0; i < listaCalificaciones.length; i++){
+                    suma = suma + listaCalificaciones[i]
+                }
+                let promedio = suma/listaCalificaciones.length;
+                this.promedio = promedio
+            }
+        }else{
+            console.log('el alumno ', this.nombre, ' ', this.apellidoPaterno, 'se hacía wey y le decía a sus padres que iba solo para darle gasto!')
+            return null;
+        }
     }
 }
 //clase materia que va a ir dentro de alumno.materias
@@ -40,56 +65,10 @@ class Materia{
     }
 }
 
-class ListaEnlazada{
-    constructor(){
-        this.head = null;
-    }
-    insertarNodo(valor){
-        const nuevoNodo = new Node(valor, null);
-        if(this.head == null){
-            this.head = nuevoNodo;
-            return 
-        }
-        let nodoActual = this.head;
-        //con este while, iteramos sobre la lista hasta tener un nodo vacio.
-        while(nodoActual.siguiente){
-            nodoActual = nodoActual.siguiente;
-        }
-        nodoActual.siguiente = nuevoNodo
-    }
-    mostrarNodo(){
-        let NodoActual = this.head;
-        while(NodoActual){
-            console.log(NodoActual.value);
-            NodoActual = NodoActual.next;
-        }
-    }
-    buscarNodo(Elemento){
-        let NodoActual = this.head;
-        while(NodoActual){
-            if(NodoActual.value === Elemento){
-                return NodoActual;
-            }
-            NodoActual = NodoActual.next;
-        }
-        return null;
-    }
-}
-class Nodo{
-    constructor(valor, siguiente){
-        this.valor = valor; //espacio de registro para el valor que queremos almacenar
-        this.siguiente = siguiente; //puntero que usaremos para referenciar el siguiente elemento de la lista
-    }
 
-}
-
-//nuestra poderosisima estructura dee datos
-Alumnos = []
-const ListaAlumnos = new ListaEnlazada();
 //variable para poder distinguir materias al momento de eliminar la materia desde el boton de eliminar
 let numeroDeMateria = 1;
 let ExpedienteNuevo = 1;
-
 
 
 
@@ -106,18 +85,35 @@ form.addEventListener('submit', (event) =>{
     let grupoSeleccionado = document.getElementById('grupoSeleccionado').value;
     let expedienteAlumno = ExpedienteNuevo;
     ExpedienteNuevo++;
-    //creamos un alumno con los valores del formulario
-    let nuevoAlumno = new Alumno(nombre, apellidoPaterno, apellidoMaterno, edad, grupoSeleccionado, expedienteAlumno);
-    //registramos materias del alumno.
-    insertarMaterias(nuevoAlumno);
-    console.log('Alumno registrado: ', nuevoAlumno); //este console.log es para depurar y ver como se registro el alumno
-    ListaAlumnos.insertarNodo(nuevoAlumno);
-    Alumnos.push(nuevoAlumno); //agregamos a la estructura de datos el alumno registrado
-    GuardarDatos(Alumnos); // guardar en localstorage los datos del alumno
-    console.log(Alumnos) //comprobamos si se registra bien en la estructura de datos
-    console.log(ListaAlumnos);
+    let AlumnoRegistrado = false;
+    //comprobar todos los nombres de los alumnos buscando uno igual.
+    if(Alumnos.length > 0){
+        for(let i = 0; i < Alumnos.length; i++){
+            console.log(Alumnos[i].nombre,Alumnos[i].apellidoPaterno,Alumnos[i].apellidoMaterno)
+            if(nombre != Alumnos[i].nombre && apellidoPaterno != Alumnos[i].apellidoMaterno && apellidoMaterno != Alumnos[i].apellidoMaterno){
+                AlumnoRegistrado = false;
+            }else{
+            AlumnoRegistrado = true;
+            console.log('El alumno ya ha sido registrado!')
+            }
+        }
+    }
+    if(AlumnoRegistrado == false){
+        //creamos un alumno con los valores del formulario
+        let nuevoAlumno = new Alumno(nombre, apellidoPaterno, apellidoMaterno, edad, grupoSeleccionado, expedienteAlumno);
+        //registramos materias del alumno.
+        insertarMaterias(nuevoAlumno);
+        console.log('Alumno registrado: ', nuevoAlumno); //este console.log es para depurar y ver como se registro el alumno
+        console.log('el promedio del alumno es ', nuevoAlumno.promedioAlumno());
+        Alumnos.push(nuevoAlumno); //agregamos a la estructura de datos el alumno registrado
+        GuardarDatos(Alumnos); // guardar en localstorage los datos del alumno
+        console.log(Alumnos) //comprobamos si se registra bien en la estructura de datos
+
+    }
     formularioCompleto.reset(); //se borran los datos del formulario para facilitar el registro de otro alumno.
 })
+
+
 //para insertar cada materia en el alumno en registro.
 function insertarMaterias(Alumno){
     const elementoPadre = document.getElementById('EspacioMaterias'); //se obtiene el div main
@@ -125,6 +121,7 @@ function insertarMaterias(Alumno){
     inputsMateria.forEach((input, index) =>{ //se recorre cada materia registrada en el alumno.
         const nombreMateria = input.querySelector('.nombre-materia').value; //se obtine y se guarda la materia registrada
         const calificacionMateria = input.querySelector('.calificacion-materia').value; //se obtiene y se guarda la calificacion en cada materia
+        parseInt(calificacionMateria);
         console.log(`la materia ${nombreMateria} con calificacion ${calificacionMateria} ha sido registrada correctamente!`)// console.log para comprobar que se obtuvo bien la materia
         let nuevaMateria = new Materia(nombreMateria, calificacionMateria); // se ingresan la materia y calificacion en una materia 
         Alumno.materias.push(nuevaMateria); //se agrega la materia a las materias del alumno
@@ -202,9 +199,6 @@ function buscarAlumno(){ //buscar por nombre ó apellidos
  }
  //-------    agregar contenido al html si encuentra alumnos
  function DetallesAlumno(alumno){
- 
- 
- 
  // crear divs "a"  para vincular a cada alumno a una seccion de detalles
  const espacioDetallesAlumno = document.getElementById('EspacioDetallesAlumno')
  const detallesAlumno = document.createElement("div");
@@ -220,30 +214,46 @@ function buscarAlumno(){ //buscar por nombre ó apellidos
  //  sacar un promedio de un grupo
  
  function PromedioGrupal(){
-     let ListaGrupo1 = [];
-     let ListaGrupo2 = [];
-     let ListaGrupo3 = [];
+    let ListaGrupo1 = [];
+    let ListaGrupo2 = [];
+    let ListaGrupo3 = [];
+    let Grupos = [
+        ListaGrupo1,
+        ListaGrupo2,
+        ListaGrupo3
+    ];
  
      // hacemos tres listas de los tres grupos
-     if (Alumnos.length > 0 )  {
-         for(let i = 0; i < Alumnos.length; i++){
-             if (Alumnos[i].grupo == 'grupo 1'){
- 
-                 ListaGrupo1.push(Alumnos[i])
-             }else if (Alumnos[i].grupo == 'grupo 2'){
-                 ListaGrupo2.push(Alumnos[i])
-             }else if (Alumnos[i].grupo == 'grupo 3'){
-                 ListaGrupo3.push(Alumnos[i])
-             }
- 
-           
-         }
-     }
- 
- 
-     if (ListaGrupo1.length > 0){
-         ListaGrupo1.sort((a, b) => a - b)
-     }
+    if (Alumnos.length > 0 )  {
+        for(let i = 0; i < Alumnos.length; i++){
+            if (Alumnos[i].grupo == 'grupo 1'){
+                ListaGrupo1.push(Alumnos[i])
+            }else if (Alumnos[i].grupo == 'grupo 2'){
+                ListaGrupo2.push(Alumnos[i])
+            }else if (Alumnos[i].grupo == 'grupo 3'){
+                ListaGrupo3.push(Alumnos[i])
+            }
+        }
+    }
+    let PromediosGrupales = [];
+    // bucle para iterar en la lista de grupos de que hay
+    for (let i =0; i< Grupos.length; i++){
+        let sumaPromediosGrupo = 0;
+        let grupo = Grupos[i]
+        for (let j = 0; j < grupo.length; j++){
+            let alumno = grupo[j];
+            alumno.promedioAlumno()
+            let promedioAlumno = alumno.promedio;
+            sumaPromediosGrupo = sumaPromediosGrupo + promedioAlumno;
+            console.log('el promedio del alumno es ', alumno.promedio);
+        }
+        let promediogrupal = sumaPromediosGrupo/grupo.length;
+        console.log('el promedio del grupo', grupo, 'es', promediogrupal);
+        PromediosGrupales.push(promediogrupal)    
+    }
+    //  if (ListaGrupo1.length > 0){
+    //      ListaGrupo1.sort((a, b) => a - b) //
+    //  }
  
      console.log('miembros del grupo 1:',ListaGrupo1)
      console.log('miembros del grupo 2:',ListaGrupo2)
@@ -251,7 +261,7 @@ function buscarAlumno(){ //buscar por nombre ó apellidos
  
  }
  
- PromedioGrupal()
+PromedioGrupal()
  //console.log(grupoSeleccionado.value)
  
  //---------------------------------------------------------------------------------------------------------
