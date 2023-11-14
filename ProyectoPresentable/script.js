@@ -1,4 +1,25 @@
+//----------------------------------------------------------------------------------
+function CargarDatos(){
 
+    if (localStorage.getItem("DatabaseAlumnos")){
+    
+       Alumnos = JSON.parse( localStorage.getItem("DatabaseAlumnos") );
+       }else{
+        console.log('no hay datos guardados')
+       }
+    }
+    //----------------------------------------------------------------------------------
+    CargarDatos();
+    
+    //----------------------------------------------------------------------------------
+    function GuardarDatos(datosAlumnos){
+    
+       localStorage.setItem("DatabaseAlumnos", JSON.stringify(datosAlumnos));
+    
+    }
+    //----------------------------------------------------------------------------------
+    
+    
 //clase alumno
 class Alumno{
     constructor(nombre, apellidoPaterno, apellidoMaterno, edad, grupo, expediente){
