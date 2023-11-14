@@ -4,6 +4,7 @@ class Nodo {
         this.siguiente = null;
     }
 }
+//
 
 class ListaEnlazada {
     constructor() {
