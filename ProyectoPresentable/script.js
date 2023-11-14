@@ -40,13 +40,12 @@ class Alumno{
         if(this.materias.length > 0){
             let listaCalificaciones = [];
             for(let i = 0; i< this.materias.length; i++){
-                let calificacionEnUso = this.materias[i].calificacion;
-                parseInt(calificacionEnUso);
-                listaCalificaciones.push(this.materias[i].calificacion);
+                let calificacionEnUso = parseInt(this.materias[i].calificacion);
+                listaCalificaciones.push(calificacionEnUso);
             }
             let suma = 0;
             if(listaCalificaciones.length > 0){
-                for(let i=0; i < listaCalificaciones; i++){
+                for(let i=0; i < listaCalificaciones.length; i++){
                     suma = suma + listaCalificaciones[i]
                 }
                 let promedio = suma/listaCalificaciones.length;
@@ -228,32 +227,28 @@ function buscarAlumno(){ //buscar por nombre ó apellidos
     if (Alumnos.length > 0 )  {
         for(let i = 0; i < Alumnos.length; i++){
             if (Alumnos[i].grupo == 'grupo 1'){
- 
                 ListaGrupo1.push(Alumnos[i])
             }else if (Alumnos[i].grupo == 'grupo 2'){
                 ListaGrupo2.push(Alumnos[i])
             }else if (Alumnos[i].grupo == 'grupo 3'){
                 ListaGrupo3.push(Alumnos[i])
             }
- 
-           
         }
     }
-    let PromediosGrupales;
+    let PromediosGrupales = [];
     // bucle para iterar en la lista de grupos de que hay
     for (let i =0; i< Grupos.length; i++){
         let sumaPromediosGrupo = 0;
         let grupo = Grupos[i]
-        for (let i = 0; i < grupo.length; i++){
-        let alumno = grupo[i]
-        let promedioAlumno = alumno.promedioAlumno()
-        console.log(alumno)
-        //bucle para sacar el promedio del grupo
+        for (let j = 0; j < grupo.length; j++){
+            let alumno = grupo[j];
+            alumno.promedioAlumno()
+            let promedioAlumno = alumno.promedio;
             sumaPromediosGrupo = sumaPromediosGrupo + promedioAlumno;
-            console.log('el promedio del grupo ',grupo,' es ',sumaPromediosGrupo);
+            console.log('el promedio del alumno es ', alumno.promedio);
         }
-        let promediogrupal = sumaPromediosGrupo/Grupos[i].length;
-        console.log(promediogrupal);
+        let promediogrupal = sumaPromediosGrupo/grupo.length;
+        console.log('el promedio del grupo', grupo, 'es', promediogrupal);
         PromediosGrupales.push(promediogrupal)    
     }
     //  if (ListaGrupo1.length > 0){
@@ -266,7 +261,7 @@ function buscarAlumno(){ //buscar por nombre ó apellidos
  
  }
  
-// PromedioGrupal()
+PromedioGrupal()
  //console.log(grupoSeleccionado.value)
  
  //---------------------------------------------------------------------------------------------------------
