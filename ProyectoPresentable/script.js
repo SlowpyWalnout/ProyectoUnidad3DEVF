@@ -160,7 +160,6 @@ function eliminarMateria(button){
 }
 
 
-
 //--------------------            BUSCAR ALUMNO          -------------------------------------------------
 
 function buscarAlumno(){ //buscar por nombre ó apellidos
@@ -213,18 +212,8 @@ function buscarAlumno(){ //buscar por nombre ó apellidos
  detallesAlumno.id = "DetallesAlumno";
  detallesAlumno.innerHTML = `<a href="">${alumno}</a>`
  espacioDetallesAlumno.appendChild(detallesAlumno);
- 
- 
-   
- 
- 
+
  }
- 
- 
- 
- 
- 
- 
  
  //---------------------------------------------------------------------------------------------------------
  
@@ -268,3 +257,5 @@ function buscarAlumno(){ //buscar por nombre ó apellidos
  //---------------------------------------------------------------------------------------------------------
  
  
+ 
+ //
