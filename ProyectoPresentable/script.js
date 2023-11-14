@@ -5,9 +5,9 @@ let Alumnos = []
 
 function CargarDatos(){
 
-    if (localStorage.getItem("DatabaseAlumnos2")){
+    if (localStorage.getItem("DatabaseAlumnos3")){
     
-       Alumnos = JSON.parse( localStorage.getItem("DatabaseAlumnos2") ); //recupera el objeto original.
+       Alumnos = JSON.parse( localStorage.getItem("DatabaseAlumnos3") ); //recupera el objeto original.
        }else{
         console.log('no hay datos guardados')
        }
@@ -18,7 +18,7 @@ function CargarDatos(){
     //----------------------------------------------------------------------------------
     function GuardarDatos(datosAlumnos){
     
-       localStorage.setItem("DatabaseAlumnos2", JSON.stringify(datosAlumnos));//trasforma el dato en formato json
+       localStorage.setItem("DatabaseAlumnos3", JSON.stringify(datosAlumnos));//trasforma el dato en formato json
     
     }
     //----------------------------------------------------------------------------------
@@ -35,26 +35,6 @@ class Alumno{
         this.materias = [];
         this.expediente = expediente;
         this.promedio = 0;
-    }
-    promedioAlumno(){
-        if(this.materias.length > 0){
-            let listaCalificaciones = [];
-            for(let i = 0; i< this.materias.length; i++){
-                let calificacionEnUso = parseInt(this.materias[i].calificacion);
-                listaCalificaciones.push(calificacionEnUso);
-            }
-            let suma = 0;
-            if(listaCalificaciones.length > 0){
-                for(let i=0; i < listaCalificaciones.length; i++){
-                    suma = suma + listaCalificaciones[i]
-                }
-                let promedio = suma/listaCalificaciones.length;
-                this.promedio = promedio
-            }
-        }else{
-            console.log('el alumno ', this.nombre, ' ', this.apellidoPaterno, 'se hacía wey y le decía a sus padres que iba solo para darle gasto!')
-            return null;
-        }
     }
 }
 //clase materia que va a ir dentro de alumno.materias
@@ -105,7 +85,7 @@ form.addEventListener('submit', (event) =>{
         //registramos materias del alumno.
         insertarMaterias(nuevoAlumno);
         console.log('Alumno registrado: ', nuevoAlumno); //este console.log es para depurar y ver como se registro el alumno
-        console.log('el promedio del alumno es ', nuevoAlumno.promedioAlumno());
+        sacarPromedio(nuevoAlumno);
         Alumnos.push(nuevoAlumno); //agregamos a la estructura de datos el alumno registrado
         GuardarDatos(Alumnos); // guardar en localstorage los datos del alumno
         console.log(Alumnos) //comprobamos si se registra bien en la estructura de datos
@@ -259,16 +239,16 @@ function crearEspacio(alumno){
     for (let i =0; i< ListaGrupos.length; i++){ /// itera 3 veces
 
         let sumaPromediosGrupo = 0;
-        let grupo = ListaGrupos[i];
+        let grupo = Grupos[i]
         for (let j = 0; j < grupo[i].length; j++){
             let alumno = Alumnos[i,j]//grupo[j];//  Alumnos[grupo,numAlumno]
-            alumno.promedioAlumno()
+            sacarPromedio(alumno);
             let promedioAlumno = alumno.promedio;
             sumaPromediosGrupo = sumaPromediosGrupo + promedioAlumno;
-            console.log('el promedio del alumno es ', alumno.promedio);
+            console.log('el promedio del alumno es ', promedioAlumno);
         }
         let promediogrupal = sumaPromediosGrupo/grupo.length;
-        console.log('el promedio del grupo', grupo, 'es', promediogrupal);
+        console.log('el promedio del grupo ',i+1,' es ', promediogrupal);
         PromediosGrupales.push(promediogrupal)    
     }
     */
@@ -281,7 +261,27 @@ function crearEspacio(alumno){
      console.log('miembros del grupo 3:',ListaGrupo3)
  
  }
- 
+function sacarPromedio(alumno){
+    if(alumno.materias.length > 0){
+        let listaCalificaciones = [];
+        for(let i = 0; i< alumno.materias.length; i++){
+            let calificacionEnUso = parseInt(alumno.materias[i].calificacion);
+            listaCalificaciones.push(calificacionEnUso);
+        }
+        let suma = 0;
+        if(listaCalificaciones.length > 0){
+            for(let i=0; i < listaCalificaciones.length; i++){
+                suma = suma + listaCalificaciones[i]
+            }
+            let promedio = suma/listaCalificaciones.length;
+            alumno.promedio = promedio
+        }
+    }else{
+        console.log('el alumno ', alumno.nombre, ' ', alumno.apellidoPaterno, 'se hacía wey y le decía a sus padres que iba solo para darle gasto!')
+        return null;
+    }
+}
+
 PromedioGrupal()
  //console.log(grupoSeleccionado.value)
  
