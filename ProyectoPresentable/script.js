@@ -90,11 +90,12 @@ form.addEventListener('submit', (event) =>{
     if(Alumnos.length > 0){
         for(let i = 0; i < Alumnos.length; i++){
             console.log(Alumnos[i].nombre,Alumnos[i].apellidoPaterno,Alumnos[i].apellidoMaterno)
-            if(nombre != Alumnos[i].nombre && apellidoPaterno != Alumnos[i].apellidoMaterno && apellidoMaterno != Alumnos[i].apellidoMaterno){
-                AlumnoRegistrado = false;
+            if(nombre == Alumnos[i].nombre && apellidoPaterno == Alumnos[i].apellidoPaterno && apellidoMaterno == Alumnos[i].apellidoMaterno){
+                AlumnoRegistrado = true;
+                console.log('El alumno ya ha sido registrado!')
             }else{
-            AlumnoRegistrado = true;
-            console.log('El alumno ya ha sido registrado!')
+            AlumnoRegistrado = false;
+            
             }
         }
     }
@@ -198,15 +199,32 @@ function buscarAlumno(){ //buscar por nombre ó apellidos
  
  }
  //-------    agregar contenido al html si encuentra alumnos
+function crearEspacio(alumno){
+
+    console.log('si jala')
+
+ 
+ const InfoAlumno = document.getElementById('InfoAlumno')
+ const InfoAlumnoChild = document.createElement("div");
+ InfoAlumnoChild.id = "ID_infoAlumno";
+ InfoAlumnoChild.innerHTML = 
+ `<p>
+ ${alumno}
+ 
+ </p>`
+ InfoAlumno.appendChild(InfoAlumnoChild);
+ 
+}
+
  function DetallesAlumno(alumno){
  // crear divs "a"  para vincular a cada alumno a una seccion de detalles
  const espacioDetallesAlumno = document.getElementById('EspacioDetallesAlumno')
  const detallesAlumno = document.createElement("div");
  //le asignamos nombre para identificar a cada div 
  detallesAlumno.id = "DetallesAlumno";
- detallesAlumno.innerHTML = `<a href="">${alumno}</a>`
+ detallesAlumno.innerHTML = `<a href="#" onclick="javascript:crearEspacio('${alumno}');">${alumno}</a>`;
  espacioDetallesAlumno.appendChild(detallesAlumno);
-
+ 
  }
  
  //---------------------------------------------------------------------------------------------------------
@@ -217,7 +235,7 @@ function buscarAlumno(){ //buscar por nombre ó apellidos
     let ListaGrupo1 = [];
     let ListaGrupo2 = [];
     let ListaGrupo3 = [];
-    let Grupos = [
+    let ListaGrupos = [
         ListaGrupo1,
         ListaGrupo2,
         ListaGrupo3
@@ -235,13 +253,15 @@ function buscarAlumno(){ //buscar por nombre ó apellidos
             }
         }
     }
-    let PromediosGrupales = [];
+    //let PromediosGrupales = [];
     // bucle para iterar en la lista de grupos de que hay
-    for (let i =0; i< Grupos.length; i++){
+    /*
+    for (let i =0; i< ListaGrupos.length; i++){ /// itera 3 veces
+
         let sumaPromediosGrupo = 0;
-        let grupo = Grupos[i]
-        for (let j = 0; j < grupo.length; j++){
-            let alumno = grupo[j];
+        let grupo = ListaGrupos[i];
+        for (let j = 0; j < grupo[i].length; j++){
+            let alumno = Alumnos[i,j]//grupo[j];//  Alumnos[grupo,numAlumno]
             alumno.promedioAlumno()
             let promedioAlumno = alumno.promedio;
             sumaPromediosGrupo = sumaPromediosGrupo + promedioAlumno;
@@ -251,6 +271,7 @@ function buscarAlumno(){ //buscar por nombre ó apellidos
         console.log('el promedio del grupo', grupo, 'es', promediogrupal);
         PromediosGrupales.push(promediogrupal)    
     }
+    */
     //  if (ListaGrupo1.length > 0){
     //      ListaGrupo1.sort((a, b) => a - b) //
     //  }
