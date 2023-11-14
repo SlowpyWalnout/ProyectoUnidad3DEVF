@@ -1,105 +1,71 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color:#183069;
-    font-family: 'Asap', sans-serif;
-    font-size: 20px;
+*{
+
 }
-
-
-main {
+body{
+    background-color: burlywood;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    height: auto;
+}
+form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 10%;
-    margin-block-end: 10%;
-}
-
-
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    max-width: 500px;
-    background-color: #fff;
+    justify-content: center;
     padding: 20px;
-    border-radius: 20px;
-    position: relative;
-    align-items: center;
 }
+#DatosPrincipales{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+#DatosPrincipales h2{
+    text-transform:initial;
+}
+#SeleccionarGrupo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    margin: 0;
+}
+#SeleccionarGrupo h2{
+    text-transform: initial;
+    margin-left: 0;
+    margin-right: 20px;
+}
+#SeleccionarGrupo select{
+    margin-right: 10px;
+}
+#AgregarMateria{
 
-
-.title {
-    font-size: 100px;
-    color: #000000;
-    font-weight: 800;
-    letter-spacing: -1px;
-    position: relative;
+    width: 100%;
+}
+.botonMateriaTitulo{
     display: flex;
     align-items: center;
-    background-color: #fff;
 }
-
-
-.message, .signin {
-    color: #153688;
-    font-size: 23px;
-    background-color: #fff;
+.botonMateriaTitulo h2{
+    margin-right: 10px;
+    display: inline-block;
 }
-
-
-
-.form label {
-    position: relative;
-    background-color: #fff;
+.botonMateriaTitulo input{
+    text-align: center;
+    text-justify: distribute;
+    align-self: center;
+    width: 80px;
+    height: 80px;
 }
-
-
-.form label .input {
-    width: 100%;
-    height: 50px;
+#EspacioMaterias{
     margin-bottom: 20px;
-    padding: 10px 10px 10px 10px;
-    outline: 0;
-    border: 1px solid rgba(105, 105, 105, 0.397);
-    border-radius: 10px;
-    background-color: #fff;
-}
-
-
-.form label .input + span {
-    color: grey;
-    font-size: 0.9em;
-    cursor: text;
-    transition: 0.3s ease;
-    background-color: transparent;
-}
-
-button{
-    background-color: #1245b3;
-    border-radius: 20px;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-}
-
-h2{
-    background-color: #fff;
-}
-
-.buttonSuma{
-    background-color: #1245b3;
-    border-radius: 20px;
-    border: none;
-    color: white;
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
 }

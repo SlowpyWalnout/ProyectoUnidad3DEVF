@@ -69,7 +69,7 @@ form.addEventListener('submit', (event) =>{
     //comprobar todos los nombres de los alumnos buscando uno igual.
     if(Alumnos.length > 0){
         for(let i = 0; i < Alumnos.length; i++){
-            console.log(Alumnos[i].nombre,Alumnos[i].apellidoPaterno,Alumnos[i].apellidoMaterno)
+            // console.log(Alumnos[i].nombre,Alumnos[i].apellidoPaterno,Alumnos[i].apellidoMaterno)
             if(nombre == Alumnos[i].nombre && apellidoPaterno == Alumnos[i].apellidoMaterno && apellidoMaterno == Alumnos[i].apellidoMaterno){
                 AlumnoRegistrado = true;
                 console.log('El alumno ya ha sido registrado!')
@@ -226,7 +226,7 @@ function buscarAlumno(){ //buscar por nombre ó apellidos
             sacarPromedio(alumno);
             let promedioAlumno = alumno.promedio;
             sumaPromediosGrupo = sumaPromediosGrupo + promedioAlumno;
-            console.log('el promedio del alumno es ', promedioAlumno);
+            // console.log('el promedio del alumno es ', promedioAlumno);
         }
         let promediogrupal = sumaPromediosGrupo/grupo.length;
         console.log('el promedio del grupo ',i+1,' es ', promediogrupal);
@@ -236,9 +236,9 @@ function buscarAlumno(){ //buscar por nombre ó apellidos
     //      ListaGrupo1.sort((a, b) => a - b) //
     //  }
  
-     console.log('miembros del grupo 1:',ListaGrupo1)
-     console.log('miembros del grupo 2:',ListaGrupo2)
-     console.log('miembros del grupo 3:',ListaGrupo3)
+     console.log('miembros del grupo 1:',ListaGrupo1.length)
+     console.log('miembros del grupo 2:',ListaGrupo2.length)
+     console.log('miembros del grupo 3:',ListaGrupo3.length)
  
  }
 function sacarPromedio(alumno){

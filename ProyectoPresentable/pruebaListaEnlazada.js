@@ -4,17 +4,13 @@ class Nodo {
         this.siguiente = null;
     }
 }
-//
-
 class ListaEnlazada {
     constructor() {
         this.cabeza = null;
     }
-
     // Método para insertar al final de la lista
     insertarFinal(dato) {
         const nuevoNodo = new Nodo(dato);
-
         if (!this.cabeza) {
             this.cabeza = nuevoNodo;
         } else {
@@ -25,31 +21,25 @@ class ListaEnlazada {
             nodoActual.siguiente = nuevoNodo;
         }
     }
-
     // Método para buscar un dato en la lista
     buscar(dato) {
         let nodoActual = this.cabeza;
-
         while (nodoActual) {
             if (nodoActual.dato.expediente === dato) {
                 return nodoActual;
             }
             nodoActual = nodoActual.siguiente;
         }
-
         return null; // Retorna null si no se encuentra el dato
     }
-
     // Método para mostrar la lista
     mostrar() {
         let resultado = [];
         let nodoActual = this.cabeza;
-
         while (nodoActual) {
             resultado.push(nodoActual.dato);
             nodoActual = nodoActual.siguiente;
         }
-
         console.log(resultado.join(" -> "));
     }
 }
