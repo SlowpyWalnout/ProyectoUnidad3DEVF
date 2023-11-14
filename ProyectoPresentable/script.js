@@ -168,7 +168,13 @@ function buscarAlumno(){ //buscar por nombre ó apellidos
            {  
            
              ListaAlumnosRegistrados.push(Alumnos[i])
-             DetallesAlumno(Alumnos[i].nombre + ' ' + Alumnos[i].apellidoPaterno + ' ' + Alumnos[i].apellidoMaterno)
+             DetallesAlumno(
+                [
+                  'Grupo: ' +  Alumnos[i].grupo,
+                   'Edad: ' + Alumnos[i].edad,
+                   'promedio: ' +   sacarPromedio(Alumnos[i]),            
+                ]
+                ,Alumnos[i].nombre + ' ' + Alumnos[i].apellidoPaterno + ' ' + Alumnos[i].apellidoMaterno)
              //return ListaAlumnosRegistrados;
              
            }else{console.log('alumno no registrado')}
@@ -181,30 +187,32 @@ function buscarAlumno(){ //buscar por nombre ó apellidos
  
  }
  //-------    agregar contenido al html si encuentra alumnos
-function crearEspacio(alumno){
+function crearEspacio(alumno,nombre){
 
-    console.log('si jala')
-
- 
+    console.log(alumno)
+   
+   
  const InfoAlumno = document.getElementById('InfoAlumno')
  const InfoAlumnoChild = document.createElement("div");
  InfoAlumnoChild.id = "ID_infoAlumno";
  InfoAlumnoChild.innerHTML = 
  `<p>
+ ${nombre}
  ${alumno}
+
  
  </p>`
  InfoAlumno.appendChild(InfoAlumnoChild);
  
 }
 
- function DetallesAlumno(alumno){
+ function DetallesAlumno(alumno,nombre){
  // crear divs "a"  para vincular a cada alumno a una seccion de detalles
  const espacioDetallesAlumno = document.getElementById('EspacioDetallesAlumno')
  const detallesAlumno = document.createElement("div");
  //le asignamos nombre para identificar a cada div 
  detallesAlumno.id = "DetallesAlumno";
- detallesAlumno.innerHTML = `<a href="#" onclick="javascript:crearEspacio('${alumno}');">${alumno}</a>`;
+ detallesAlumno.innerHTML = `<a href="#" onclick="javascript:crearEspacio('${alumno}','${nombre}');">${nombre}</a>`;
  espacioDetallesAlumno.appendChild(detallesAlumno);
  
  }
@@ -235,9 +243,10 @@ function crearEspacio(alumno){
             }
         }
     }
-    //let PromediosGrupales = [];
-    // bucle para iterar en la lista de grupos de que hay
     /*
+    let PromediosGrupales = [];
+    // bucle para iterar en la lista de grupos de que hay
+    
     for (let i =0; i< ListaGrupos.length; i++){ /// itera 3 veces
 
         let sumaPromediosGrupo = 0;

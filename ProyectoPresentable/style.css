@@ -69,3 +69,13 @@ form{
 #EspacioMaterias{
     margin-bottom: 20px;
 }
+#ID_infoAlumno{
+
+    text-align:center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    margin: 0;
+}
