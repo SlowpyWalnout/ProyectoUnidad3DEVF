@@ -256,26 +256,24 @@ function PromedioGrupal() {
       }
     }
   }
-  /*
-    let PromediosGrupales = [];
-    // bucle para iterar en la lista de grupos de que hay
-    
-    for (let i =0; i< ListaGrupos.length; i++){ /// itera 3 veces
+  let PromediosGrupales = [];
+  // bucle para iterar en la lista de grupos de que hay
+  
+  for (let i =0; i< ListaGrupos.length; i++){ /// itera 3 veces
 
-        let sumaPromediosGrupo = 0;
-        let grupo = Grupos[i]
-        for (let j = 0; j < grupo[i].length; j++){
-            let alumno = Alumnos[i,j]//grupo[j];//  Alumnos[grupo,numAlumno]
-            sacarPromedio(alumno);
-            let promedioAlumno = alumno.promedio;
-            sumaPromediosGrupo = sumaPromediosGrupo + promedioAlumno;
-            // console.log('el promedio del alumno es ', promedioAlumno);
-        }
-        let promediogrupal = sumaPromediosGrupo/grupo.length;
-        console.log('el promedio del grupo ',i+1,' es ', promediogrupal);
-        PromediosGrupales.push(promediogrupal)    
-    }
-    */
+      let sumaPromediosGrupo = 0;
+      let grupo = ListaGrupos[i]
+      for (let j = 0; j < grupo.length; j++){
+          let alumno = Alumnos[i,j]//grupo[j];//  Alumnos[grupo,numAlumno]
+          sacarPromedio(alumno);
+          let promedioAlumno = alumno.promedio;
+          sumaPromediosGrupo = sumaPromediosGrupo + promedioAlumno;
+          // console.log('el promedio del alumno es ', promedioAlumno);
+      }
+      let promediogrupal = sumaPromediosGrupo/grupo.length;
+      console.log('el promedio del grupo ',i+1,' es ', promediogrupal);
+      PromediosGrupales.push(promediogrupal)    
+  }
   //  if (ListaGrupo1.length > 0){
   //      ListaGrupo1.sort((a, b) => a - b) //
   //  }
